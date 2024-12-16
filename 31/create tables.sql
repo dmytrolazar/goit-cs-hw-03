@@ -1,0 +1,19 @@
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    fullname VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE
+)
+
+CREATE TABLE IF NOT EXISTS statuses (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) UNIQUE
+)
+
+CREATE TABLE IF NOT EXISTS tasks (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100),
+    description TEXT,
+    status_id INTEGER REFERENCES statuses(id),
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+)
